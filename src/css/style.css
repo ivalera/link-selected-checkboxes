@@ -1,4 +1,4 @@
-.count-categories-input {
+.count-categories-wrapper {
   display: flex;
   flex-direction: column;
   width: fit-content;
@@ -6,7 +6,7 @@
   margin-bottom: 10px;
 }
 
-#checkbox-count {
+#checkbox-count-input {
   width: 20%;
   padding: 5px;
 }
