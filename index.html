@@ -4,23 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Выбор категорий</title>
-    <script type="module" crossorigin src="/link-selected-checkboxes/assets/index-D7ZzCCJO.js"></script>
-    <link rel="stylesheet" crossorigin href="/link-selected-checkboxes/assets/index-eu6NecwG.css">
+    <script type="module" crossorigin src="/link-selected-checkboxes/assets/index-CdF6eFS2.js"></script>
+    <link rel="stylesheet" crossorigin href="/link-selected-checkboxes/assets/index-CJDVpVAq.css">
   </head>
   <body>
-    <h1>Выберите категории</h1>
-    <form id="category-form">
-      <div class="count-categories-input">
-          <label for="checkbox-count">Введите количество чекбоксов для генерации:</label>
-          <input type="number" id="checkbox-count" min="0" max="100" value="0">
-      </div>
-      <button type="submit" id="generate">Генерировать</button>
-      </form>
-  
-    <div id="checkboxes"></div>
-  
-    <div class="selected-categories">
-      <h3>Выбранные категории: <span id="selected"></span></h3>
-    </div>
+    <main>
+      <section>
+        <h1>Выберите категории</h1>
+        <form id="category-form">
+          <div class="count-categories-wrapper">
+              <label for="checkbox-count">Введите количество чекбоксов для генерации:</label>
+              <input type="number" id="checkbox-count-input" min="0" max="100" value="0">
+          </div>
+          <button type="submit" id="generate">Генерировать</button>
+          </form>
+      
+        <div id="checkboxes"></div>
+      
+        <div class="selected-categories">
+          <h3>Выбранные категории: <span id="selected"></span></h3>
+        </div>
+      </section>
+    </main>
   </body>
 </html>
