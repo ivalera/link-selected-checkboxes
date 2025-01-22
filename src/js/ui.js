@@ -1,5 +1,5 @@
-import { MAX_CHECKBOCES, MIN_CHECKBOCES } from './constants';
-import { checkboxCountInput, checkboxesContainer } from './dom-elements.js';
+import { MAX_CHECKBOXES, MIN_CHECKBOXES } from './constants';
+import { checkboxCountInput, checkboxTemplate, checkboxesContainer } from './dom-elements.js';
 import { restoreFromURL, updateSelectedDisplay, updateURL } from './utils.js';
 
 let selectedCategoriesID = [];
@@ -7,10 +7,10 @@ let selectedCategoriesID = [];
 export function onCheckboxCountChange(event) {
   let value = event.target.value;
 
-  if (value < MIN_CHECKBOCES) {
-    event.target.value = MIN_CHECKBOCES;
-  } else if (value > MAX_CHECKBOCES) {
-    event.target.value = MAX_CHECKBOCES;
+  if (value < MIN_CHECKBOXES) {
+    event.target.value = MIN_CHECKBOXES;
+  } else if (value > MAX_CHECKBOXES) {
+    event.target.value = MAX_CHECKBOXES;
   }
 
   updateURL(selectedCategoriesID);
@@ -39,8 +39,8 @@ function handleCheckboxChange(event) {
 }
 
 function generateCheckboxes(count, resetSelection = true) {
-  const checkboxesBlock = checkboxesContainer;
-  checkboxesBlock.innerHTML = '';
+  const template = checkboxTemplate;
+  checkboxesContainer.innerHTML = '';
 
   if (resetSelection) {
     selectedCategoriesID = [];
@@ -50,24 +50,21 @@ function generateCheckboxes(count, resetSelection = true) {
   updateSelectedDisplay(selectedCategoriesID);
 
   for (let i = 1; i <= count; i++) {
-    const checkbox = document.createElement('input');
+    const checkboxItem = template.content.cloneNode(true);
+    const checkbox = checkboxItem.querySelector('input');
+    const label = checkboxItem.querySelector('label');
+
     checkbox.type = 'checkbox';
     checkbox.id = `cat${i}`;
     checkbox.value = i;
+    label.htmlFor = `cat${i}`;
+    label.textContent = `Категория ${i}`;
 
     checkbox.checked = selectedCategoriesID.includes(checkbox.value);
 
     checkbox.addEventListener('change', handleCheckboxChange);
 
-    const label = document.createElement('label');
-    label.htmlFor = `cat${i}`;
-    label.textContent = `Категория ${i}`;
-
-    const lineBreak = document.createElement('br');
-
-    checkboxesBlock.appendChild(checkbox);
-    checkboxesBlock.appendChild(label);
-    checkboxesBlock.appendChild(lineBreak);
+    checkboxesContainer.appendChild(checkboxItem);
   }
 }
 

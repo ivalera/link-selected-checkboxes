@@ -16,13 +16,21 @@
               <input type="number" id="checkbox-count-input" min="0" max="100" value="0">
           </div>
           <button type="submit" id="generate">Генерировать</button>
-          </form>
+        </form>
       
-        <div id="checkboxes"></div>
-      
+        <template id="checkbox-template">
+          <div class="checkbox-item">
+            <input type="checkbox">
+            <label></label>
+          </div>
+        </template>
+
         <div class="selected-categories">
           <h3>Выбранные категории: <span id="selected"></span></h3>
         </div>
+
+        <div id="checkboxes"></div>
+      
       </section>
     </main>
     <script type="module" src="/src/js/main.js"></script>
