@@ -5,7 +5,10 @@ import { restoreFromURL, updateSelectedDisplay, updateURL } from './utils.js';
 let selectedCategoriesID = [];
 
 export function onCheckboxCountChange(event) {
-  let value = event.target.value;
+  const input = event.target;
+  if (!input) return;
+
+  let value = input.value;
 
   if (value < MIN_CHECKBOXES) {
     event.target.value = MIN_CHECKBOXES;
@@ -19,14 +22,19 @@ export function onCheckboxCountChange(event) {
 export function handleCategoryFormSubmit(event) {
   event.preventDefault();
 
+  if (!checkboxCountInput) return;
+
   const count = checkboxCountInput.value;
   generateCheckboxes(count);
 }
 
 function handleCheckboxChange(event) {
-  const value = event.target.value;
+  const checkbox = event.target;
+  if (!checkbox) return;
 
-  if (event.target.checked) {
+  const value = checkbox.value;
+
+  if (checkbox.checked) {
     if (!selectedCategoriesID.includes(value)) {
       selectedCategoriesID.push(value);
     }
@@ -39,6 +47,8 @@ function handleCheckboxChange(event) {
 }
 
 function generateCheckboxes(count, resetSelection = true) {
+  if(!checkboxTemplate || !checkboxesContainer) return;
+  
   const template = checkboxTemplate;
   checkboxesContainer.innerHTML = '';
 
@@ -71,7 +81,9 @@ function generateCheckboxes(count, resetSelection = true) {
 export function restoreInitialize() {
   const { categories, count } = restoreFromURL();
 
-  checkboxCountInput.value = count;
+  if (checkboxCountInput) {
+    checkboxCountInput.value = count;
+  }
 
   if (categories.length) {
     selectedCategoriesID = categories;
